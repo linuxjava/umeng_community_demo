@@ -75,6 +75,11 @@ import com.umeng.community.example.R;
 
 /**
  * ListView的Feed Item View解析器. ( 将试图的显示和解析解耦, 便于测试, 也便于复用. )
+ * 主要理清如下类：
+ * FeedContentPresenter
+ * LikePresenter
+ * FeedImageAdapter
+ * EmojiTextView（可以解析表情）
  */
 public class FeedItemViewHolder extends ViewHolder implements MvpLikeView {
     private static final String M = "m";
@@ -165,6 +170,7 @@ public class FeedItemViewHolder extends ViewHolder implements MvpLikeView {
         mForwardLayout.setVisibility(View.VISIBLE);
         if (mImageGvViewStub.getVisibility() == View.GONE) {
             mImageGvViewStub.setVisibility(View.VISIBLE);
+            //gridview布局umeng_comm_images_gc.xml
             int imageGvResId = ResFinder.getId("umeng_comm_msg_gridview");
             mImageGv = (WrapperGridView) this.findViewById(imageGvResId);
             mImageGv.hasScrollBar = true;
@@ -236,16 +242,19 @@ public class FeedItemViewHolder extends ViewHolder implements MvpLikeView {
         // 操作栏, 点击时出现一个包含转发、评论、赞功能的popupwindow
         // mOpetationBtn = findViewById(commentBtnResId);
 
-        // 转发时候的text和图片gv
+        // 转发内容的layout
         mForwardLayout = findViewById(forwardgvResId);
         // 转发文本内容
         mForwardTextTv = findViewById(forwardTextResId);
-        // 弹出举报、删除feed对话框的按钮
+        // 分享按钮
         mShareBtn = findViewById(ResFinder.getId("umeng_comm_dialog_btn"));
-
+        //喜欢
         mLikeCountTextView = findViewById(ResFinder.getId("umeng_comm_like_tv"));
+        //转发
         mForwardCountTextView = findViewById(ResFinder.getId("umeng_comm_forward_tv"));
+        //评论
         mCommentCountTextView = findViewById(ResFinder.getId("umeng_comm_comment_tv"));
+        //距离
         mDistanceTextView = findViewById(distanceTextResId);
     }
 
@@ -612,6 +621,11 @@ public class FeedItemViewHolder extends ViewHolder implements MvpLikeView {
         mForwardCountTextView.setVisibility(View.GONE);
     }
 
+    /**
+     * 设置listview中每个item中子view的点击事件
+     * @param position
+     * @param listener
+     */
     public void setOnItemViewClickListener(final int position,
             final OnItemViewClickListener<FeedItem> listener) {
         mItemViewClickListener = listener;
@@ -627,6 +641,10 @@ public class FeedItemViewHolder extends ViewHolder implements MvpLikeView {
         });
     }
 
+    /**
+     * 点赞回调监听
+     * @param listener
+     */
     public void setOnUpdateListener(OnResultListener listener) {
         mLikePresenter.setResultListener(listener);
     }

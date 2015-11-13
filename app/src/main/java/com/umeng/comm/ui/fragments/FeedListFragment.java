@@ -74,6 +74,9 @@ import java.util.List;
 /**
  * 这是Feed流列表页面，包含当前最新的消息列表.从该页面可以跳转到话题搜索页面、消息发布页面，
  * 可以浏览消息流中的图片、评论某项消息、进入某个好友的主页等.
+ * FeedListPresenter
+ * MvpFeedView
+ * FeedAdapter
  */
 public abstract class FeedListFragment<P extends FeedListPresenter> extends
         CommentEditFragment<List<FeedItem>, P> implements MvpFeedView {

@@ -51,7 +51,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Feed列表相关的Presenter，该Presenter从网络、数据库中读取Feed，如果数据是从网络上获取的，那么需要将数据存储到数据库中。
+ * Feed列表相关的Presenter，该Presenter从网络、数据库中读取Feed，如果数据是从网络上获取的，
+ * 那么需要将数据存储到数据库中。
  * 在获取数据后会通过MvpFeedView的{@link MvpFeedView#getAdapterDataSet()}
  * 函数获取到列表的数据集,然后对新获取的数据进行去重、排序，再将新获取到的数据添加到列表的数据集合中，最后调用
  * {@link MvpFeedView#notifyDataSetChanged()} 函数更新对应的列表视图。
@@ -271,7 +272,7 @@ public class FeedListPresenter extends BaseFeedPresenter {
     }
 
     /**
-     * 获取所有的feed
+     * 获取所有的feed(被attach调用)
      */
     @Override
     public void loadDataFromDB() {
@@ -280,7 +281,7 @@ public class FeedListPresenter extends BaseFeedPresenter {
 
     /**
      * 获取某个用户的feed</br>
-     *
+     *(被attach调用)
      * @param uid
      */
     // 注意这里不能重构
@@ -317,6 +318,7 @@ public class FeedListPresenter extends BaseFeedPresenter {
         }
     }
 
+    /*******************注册登录监听广播**********************/
     /**
      * 注册登录成功时的广播</br>
      */
