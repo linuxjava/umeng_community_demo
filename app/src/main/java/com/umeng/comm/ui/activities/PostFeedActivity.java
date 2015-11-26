@@ -84,6 +84,9 @@ import com.umeng.comm.ui.widgets.TopicTipView;
 
 /**
  * 发布feed的Activity
+ * FeedPostPresenter
+ * TakePhotoPresenter
+ * MvpPostFeedActivityView
  */
 public class PostFeedActivity extends BaseFragmentActivity implements OnClickListener,
         MvpPostFeedActivityView {
@@ -201,7 +204,8 @@ public class PostFeedActivity extends BaseFragmentActivity implements OnClickLis
         Topic mTopic = extraBundle.getParcelable(Constants.TAG_TOPIC);
         if (mTopic != null) {
             mSelecteTopics.add(mTopic);
-            if (CommConfig.getConfig().isDisplayTopicOnPostFeedPage()) {// 检查是否在编辑框添加此话题
+            if (CommConfig.getConfig().isDisplayTopicOnPostFeedPage()) {
+                //检查是否在编辑框添加此话题
                 mEditText.insertTopics(mSelecteTopics);
             }
             startFadeOutAnimForTopicTipView();
@@ -669,7 +673,6 @@ public class PostFeedActivity extends BaseFragmentActivity implements OnClickLis
                 }
             }
         });
-
     }
 
     /**

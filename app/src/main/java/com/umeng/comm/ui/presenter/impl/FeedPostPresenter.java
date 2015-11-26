@@ -59,6 +59,10 @@ import com.umeng.comm.ui.utils.FeedMemento;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 1.发帖
+ * 2.获取地理位置信息
+ */
 public class FeedPostPresenter extends BasePresenter {
 
     /**
@@ -211,6 +215,9 @@ public class FeedPostPresenter extends BasePresenter {
         return feedItem.text.trim().length() > 0;
     }
 
+    /**
+     * 获取地理位置
+     */
     public void getMyLocation() {
         LocationSDKManager.getInstance().getCurrentSDK()
                 .requestLocation(mContext, new SimpleFetchListener<Location>() {

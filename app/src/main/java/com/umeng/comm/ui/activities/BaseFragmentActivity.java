@@ -50,7 +50,9 @@ import com.umeng.comm.ui.utils.FontUtils;
 import com.umeng.comm.ui.utils.ViewFinder;
 
 /**
- * 继承自FragmentActivity的Activity类型, 封装了FragmentManager和去除了title
+ * 继承自FragmentActivity的Activity类型
+ * 1、Fragment的add、delete、replace、hide、show、detach
+ * 2、输入法的show和hide
  */
 public class BaseFragmentActivity extends FragmentActivity {
     /**

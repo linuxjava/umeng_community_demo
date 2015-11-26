@@ -99,6 +99,12 @@ public class ImageSelectedAdapter extends CommonAdapter<String, ImageSelectedVie
         }
     }
 
+    /**
+     * 显示照片（显示删除按钮）
+     * @param viewHolder
+     * @param position
+     * @param path
+     */
     private void displayImage(ImageSelectedViewHolder viewHolder, final int position, String path) {
         viewHolder.deleteImageView.setVisibility(View.VISIBLE);
         // 加载图片
@@ -113,6 +119,11 @@ public class ImageSelectedAdapter extends CommonAdapter<String, ImageSelectedVie
         });
     }
 
+    /**
+     * 删除照片（隐藏删除按钮）
+     * @param viewHolder
+     * @param drawable
+     */
     private void showDeleteImage(ImageSelectedViewHolder viewHolder, Drawable drawable) {
         viewHolder.imageView.setImageDrawable(drawable);
         viewHolder.deleteImageView.setVisibility(View.GONE);
